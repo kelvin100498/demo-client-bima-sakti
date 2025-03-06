@@ -12,7 +12,7 @@
         "start": "browser-sync start --server dist --files 'dist/css/*.css'",
         "start:debug": "npm run build && node scripts/start-debug.js",
         "deploy": "gh-pages -d dist",
-        "start:index": "browser-sync start --server --files 'index.html, css/*.css' --startPath index.html"
+        "start:index": "browser-sync start --server dist --files 'dist/index.html, dist/css/*.css' --startPath index.html"    
 
     },
     "description": "Agency is a one page HTML theme for Bootstrap.",
