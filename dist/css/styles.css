@@ -3755,6 +3755,11 @@ textarea.form-control-lg {
   text-align: center;
 }
 
+.modal-body li.nav-item {
+  list-style-type: none;
+  text-align: justify;
+}
+
 .nav-justified > .nav-link,
 .nav-justified .nav-item {
   flex-basis: 0;
@@ -11315,8 +11320,8 @@ header.masthead .masthead-heading {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
   background-color: transparent;
 }
