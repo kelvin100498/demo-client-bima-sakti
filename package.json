@@ -10,7 +10,9 @@
         "build:scss": "node scripts/build-scss.js",
         "clean": "node scripts/clean.js",
         "start": "browser-sync start --server dist --files 'dist/css/*.css'",
-        "start:debug": "npm run build && node scripts/start-debug.js"
+        "start:debug": "npm run build && node scripts/start-debug.js",
+        "deploy": "gh-pages -d dist"
+
     },
     "description": "Agency is a one page HTML theme for Bootstrap.",
     "keywords": [
@@ -44,6 +46,7 @@
         "browser-sync": "2.29.1",
         "chokidar": "3.5.3",
         "concurrently": "6.3.0",
+        "gh-pages": "^6.3.0",
         "postcss": "8.4.21",
         "prettier": "2.8.6",
         "pug": "3.0.2",
