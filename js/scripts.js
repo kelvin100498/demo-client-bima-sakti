@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
     async function fetchBerita() {
         try {
-            const response = await fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjSNh_ZVYfloYm5VRZdlrOgPog01c71RWZLAL91TTgf6gnWSJHEgkg8iUcBepkDQbjKINqv0UB1HTniiUQHRoyxhGEje08CxXe8PkGvvXpse2T19buaJv6sBhXiJCwQA9p9mII-Bf84wFno5g2ZmfW5tqFsqn-BegY7E2eCcb8Wo8lp4f8584eCfVNP_8aHvIzTeYzz9N1E2COLPJon1mDTSoeL32Ic2MQl17a9ecnTNxOJKYjZc6OJSOYmVWR5VkdLddvWqa4y21o03thsYvfvHFL0ZQ&lib=MVRnV3tDqCH4TyWg0eM07ejJOzZw8k3LO");
+            const response = await fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLhaIcd7CYg5t52421HElLASR7wDyXalUZcq2zkyLLqUE6xVYpfOvakwhu_BO81TDFd-yfGadTCPCFGBpXGAjiYX5eBPoqfCs_WekuuLc6v42KrKsAWker0m1C79BnSDtioi_5OS-j5qHSOx_IleRkDhfmmym9g9pdI9iF3u5KOyu5bI1eL7h8WVmjgQv0OPMc-7bh5TQp4VPhPmFcTTclrXdvpE5gJ7uGvtY1JBFbYAHop3B3OFtwLX_Zm9cVnC8lGNU72XonfewGO6GB1IHYb0dbg8TQ&lib=MVRnV3tDqCH4TyWg0eM07ejJOzZw8k3LO");
             const data = await response.json();
 
             // Kirim data ke HTML pakai CustomEvent
