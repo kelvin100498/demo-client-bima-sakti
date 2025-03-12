@@ -376,12 +376,6 @@ select:disabled {
   opacity: 1;
 }
 
-.berita-image img {
-  width: 100px;  /* Atur ukuran gambar */
-  height: auto;  /* Biarkan tinggi menyesuaikan */
-  display: block; /* Pastikan gambar terlihat */
-}
-
 [list]:not([type=date]):not([type=datetime-local]):not([type=month]):not([type=week]):not([type=time])::-webkit-calendar-picker-indicator {
   display: none !important;
 }
