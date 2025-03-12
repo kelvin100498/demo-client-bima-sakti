@@ -61,6 +61,7 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
             // Kirim data ke HTML pakai CustomEvent
             document.dispatchEvent(new CustomEvent("beritaLoaded", { detail: data }));
+            console.error(" mengambil data:", data);
 
         } catch (error) {
             console.error("Gagal mengambil data:", error);
