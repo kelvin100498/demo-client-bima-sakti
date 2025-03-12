@@ -59,9 +59,10 @@ window.addEventListener('DOMContentLoaded', async (event) => {
             const response = await fetch("https://script.google.com/macros/s/AKfycbzpNl-wt1Uw6w6QPmhtxoC8IHxMElqnFXLHFxVBaZ8hRPP-CnWmfgTEAyVSPOUzEmqO/exec");
             const data = await response.json();
 
+            const beritaTerbaru = data.slice(-6).reverse();
+
             // Kirim data ke HTML pakai CustomEvent
-            document.dispatchEvent(new CustomEvent("beritaLoaded", { detail: data }));
-            console.error(" mengambil data:", data);
+            document.dispatchEvent(new CustomEvent("beritaLoaded", { detail: beritaTerbaru }));
 
         } catch (error) {
             console.error("Gagal mengambil data:", error);
