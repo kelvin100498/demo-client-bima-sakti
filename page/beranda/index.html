@@ -309,18 +309,19 @@
                                     <div class="portfolio-hover">
                                         <div class="portfolio-hover-content"><i class="fas fa-3x"></i></div>
                                     </div>
-                                    <img class="portfolio-item-img" src="../../assets/img/portfolio/6.jpg" alt="..." />
+                                    <img class="portfolio-item-img" src="https://lh3.googleusercontent.com/d/1chHm6UW2MqFO1wZaWvCNDZJPiB7GAUw_" alt="..." />
                                 </a>
                                 <div class="portfolio-caption">
                                     <div class="portfolio-caption-heading">Mengenal Standar Norma dan Pengaturan tentang bisnis dan HAM</div>
                                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
-                                    <div class="portfolio-caption-subheading text-muted" >Selengkapnya</div>
+                                    <div class="portfolio-caption-subheading text-muted" >ubah dev 2</div>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div id="beritaContainer"></div>
             </section>
         <!-- Clients-->
         <div class="py-5">
@@ -681,6 +682,43 @@
                 <script>
                 AOS.init();
                 </script>
+
+
+<script>
+    document.addEventListener("beritaLoaded", (event) => {
+        const beritaContainer = document.getElementById("beritaContainer");
+        const beritaList = event.detail;
+        console.log('ini di beranda data : ', beritaList);
+    
+        beritaContainer.innerHTML = "";
+    
+        beritaList.forEach((berita) => {
+            const beritaItem = document.createElement("div");
+            beritaItem.classList.add("berita-card");
+    
+            beritaItem.innerHTML = `
+
+               <div class="portfolio-item" data-aos="fade-up" data-aos-duration="1300">
+                                <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
+                                    <div class="portfolio-hover">
+                                        <div class="portfolio-hover-content"><i class="fas fa-3x"></i></div>
+                                    </div>
+                                    <img class="portfolio-item-img" src=${berita.gambar} alt="..." />
+                                </a>
+                                <div class="portfolio-caption">
+                                    <div class="portfolio-caption-heading">${berita.judul}</div>
+                                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
+                                    <div class="portfolio-caption-subheading text-muted" >Selengkapnya</div>
+                                    </a>
+                                </div>
+                            </div>
+            `;
+    
+            beritaContainer.appendChild(beritaItem);
+        });
+    });
+    </script>
+    
 
         <!-- Core theme JS-->
         <script src="../../js/scripts.js"></script>
