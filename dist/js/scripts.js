@@ -5,9 +5,8 @@
 */
 //
 // Scripts
-// 
 
-window.addEventListener('DOMContentLoaded', event => {
+window.addEventListener('DOMContentLoaded', async (event) => {
 
     // Navbar shrink function
     var navbarShrink = function () {
@@ -20,7 +19,7 @@ window.addEventListener('DOMContentLoaded', event => {
         } else {
             navbarCollapsible.classList.add('navbar-shrink')
         }
-
+   
     };
 
     // Shrink the navbar 
@@ -51,4 +50,22 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+    // ==============================
+    // FETCH BERITA
+    // ==============================
+
+    async function fetchBerita() {
+        try {
+            const response = await fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjSNh_ZVYfloYm5VRZdlrOgPog01c71RWZLAL91TTgf6gnWSJHEgkg8iUcBepkDQbjKINqv0UB1HTniiUQHRoyxhGEje08CxXe8PkGvvXpse2T19buaJv6sBhXiJCwQA9p9mII-Bf84wFno5g2ZmfW5tqFsqn-BegY7E2eCcb8Wo8lp4f8584eCfVNP_8aHvIzTeYzz9N1E2COLPJon1mDTSoeL32Ic2MQl17a9ecnTNxOJKYjZc6OJSOYmVWR5VkdLddvWqa4y21o03thsYvfvHFL0ZQ&lib=MVRnV3tDqCH4TyWg0eM07ejJOzZw8k3LO");
+            const data = await response.json();
+
+            // Kirim data ke HTML pakai CustomEvent
+            document.dispatchEvent(new CustomEvent("beritaLoaded", { detail: data }));
+
+        } catch (error) {
+            console.error("Gagal mengambil data:", error);
+        }
+    }
+
+    fetchBerita();
 });
