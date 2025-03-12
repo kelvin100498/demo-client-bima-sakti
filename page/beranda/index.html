@@ -314,13 +314,14 @@
                                 <div class="portfolio-caption">
                                     <div class="portfolio-caption-heading">Mengenal Standar Norma dan Pengaturan tentang bisnis dan HAM</div>
                                     <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal6">
-                                    <div class="portfolio-caption-subheading text-muted" >change</div>
+                                    <div class="portfolio-caption-subheading text-muted" >ubah dev</div>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div id="beritaContainer"></div>
             </section>
         <!-- Clients-->
         <div class="py-5">
@@ -681,6 +682,36 @@
                 <script>
                 AOS.init();
                 </script>
+
+
+<script>
+    document.addEventListener("beritaLoaded", (event) => {
+        const beritaContainer = document.getElementById("beritaContainer");
+        const beritaList = event.detail;
+        console.log('ini di beranda data : ', beritaList);
+    
+        beritaContainer.innerHTML = "";
+    
+        beritaList.forEach((berita) => {
+            const beritaItem = document.createElement("div");
+            beritaItem.classList.add("berita-card");
+    
+            beritaItem.innerHTML = `
+                <div class="berita-image">
+                    <img src="${berita.gambar}" alt="${berita.judul}">
+                </div>
+                <div class="berita-content">
+                    <h3>${berita.judul}</h3>
+                    <p>${berita.isi}</p>
+                    <a href="#" class="selengkapnya">Selengkapnya</a>
+                </div>
+            `;
+    
+            beritaContainer.appendChild(beritaItem);
+        });
+    });
+    </script>
+    
 
         <!-- Core theme JS-->
         <script src="../../js/scripts.js"></script>
