@@ -11280,6 +11280,20 @@ header.masthead {
   animation: fadeInUp 1s ease-out 3.5s forwards;
 }
 
+.portfolio-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Membuat isi div seimbang */
+  height: 100%; /* Pastikan setiap item memiliki tinggi yang sama */
+}
+
+.portfolio-caption {
+  flex-grow: 1; /* Memastikan caption mengisi ruang yang tersedia */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 header.masthead .masthead-subheading {
   font-size: 1.5rem;
   font-style: italic;
