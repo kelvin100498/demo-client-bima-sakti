@@ -56,12 +56,13 @@ window.addEventListener('DOMContentLoaded', async (event) => {
 
     async function fetchBerita() {
         try {
-            const response = await fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLhaIcd7CYg5t52421HElLASR7wDyXalUZcq2zkyLLqUE6xVYpfOvakwhu_BO81TDFd-yfGadTCPCFGBpXGAjiYX5eBPoqfCs_WekuuLc6v42KrKsAWker0m1C79BnSDtioi_5OS-j5qHSOx_IleRkDhfmmym9g9pdI9iF3u5KOyu5bI1eL7h8WVmjgQv0OPMc-7bh5TQp4VPhPmFcTTclrXdvpE5gJ7uGvtY1JBFbYAHop3B3OFtwLX_Zm9cVnC8lGNU72XonfewGO6GB1IHYb0dbg8TQ&lib=MVRnV3tDqCH4TyWg0eM07ejJOzZw8k3LO");
+            const response = await fetch("https://script.google.com/macros/s/AKfycbzpNl-wt1Uw6w6QPmhtxoC8IHxMElqnFXLHFxVBaZ8hRPP-CnWmfgTEAyVSPOUzEmqO/exec");
             const data = await response.json();
 
+            const beritaTerbaru = data.reverse();
+
             // Kirim data ke HTML pakai CustomEvent
-            document.dispatchEvent(new CustomEvent("beritaLoaded", { detail: data }));
-            console.error(" mengambil data:", data);
+            document.dispatchEvent(new CustomEvent("beritaLoaded", { detail: beritaTerbaru }));
 
         } catch (error) {
             console.error("Gagal mengambil data:", error);
