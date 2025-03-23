@@ -5580,20 +5580,13 @@ textarea.form-control-lg {
 }
 
 .modal-dialog-centered {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin: 0 !important; /* Menghindari Bootstrap margin */
-  min-height: auto; /* Pastikan modal tidak mengikuti tinggi layar penuh */
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - var(--bs-modal-margin) * 2);
 }
 
 .modal-content {
-  max-width: 90vw; /* Maksimum 90% dari lebar layar */
-}
-
-.modal {
-  overflow-y: auto !important;
+  max-width: 100%; /* Maksimum 90% dari lebar layar */
 }
 
 .modal-content {
