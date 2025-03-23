@@ -5538,10 +5538,13 @@ textarea.form-control-lg {
 }
 
 .modal-dialog {
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 98%; /* Pastikan tidak terlalu lebar */
   width: auto;
-  margin: var(--bs-modal-margin);
-  pointer-events: none;
+  margin: 0; /* Hilangkan margin default Bootstrap */
 }
 .modal.fade .modal-dialog {
   transition: transform 0.3s ease-out;
