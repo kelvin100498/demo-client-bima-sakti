@@ -3910,28 +3910,32 @@ textarea.form-control-lg {
 /* Modal full layar di mode HP */
 @media (max-width: 768px) {
   .portfolio-modal .modal-dialog {
-      max-width: 100vw; /* Lebar penuh */
-      height: 100vh; /* Tinggi penuh */
-      margin: 0; /* Hilangkan margin */
-      display: flex;
-      align-items: center; /* Pusatkan modal */
+    width: 100vw; /* Lebar penuh layar */
+    height: 100vh; /* Tinggi penuh layar */
+    margin: 0; /* Hilangkan margin */
+    padding: 0; /* Hilangkan padding */
+    display: flex;
+    align-items: center; /* Pusatkan konten */
+    justify-content: center;
   }
 
   .portfolio-modal .modal-content {
-      width: 100vw;
-      height: 100vh;
-      padding: 20px; /* Beri ruang agar tidak terlalu padat */
-      overflow-y: auto; /* Scroll jika konten panjang */
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0; /* Hilangkan sudut membulat */
+    padding: 15px; /* Beri sedikit ruang agar konten tidak mepet */
+    overflow-y: auto; /* Aktifkan scroll jika konten panjang */
   }
 
   /* Perkecil teks di mode HP */
   .portfolio-modal .modal-body h1 {
-      font-size: 20px; /* Ukuran lebih kecil */
+      font-size: 18px; /* Ukuran lebih kecil */
   }
 
   .portfolio-modal .modal-body p {
-      font-size: 14px; /* Lebih nyaman dibaca */
-      line-height: 1.6; /* Jarak antar baris lebih nyaman */
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: justify;
   }
 
   .portfolio-modal .modal-body ul li {
