@@ -511,8 +511,7 @@
     <script>
         document.addEventListener("beritaLoaded", (event) => {
         const beritaContainer = document.getElementById("beritaContainer");
-        const beritaList = event.detail;
-        console.log('ini di beranda data : ', beritaList);
+        const beritaList = event.detail.slice(-6).reverse();
     
         beritaContainer.innerHTML = "";
     
@@ -555,7 +554,7 @@
                                                     <strong>Penulis: </strong>${berita.penulis}
                                                 </li>
                                                 <li>
-                                                    <strong>Tanggal: </strong>${berita.tanggal}
+                                                    <strong>Source: </strong>${berita.source}
                                                 </li>
                                             </ul>
                                         </div>
