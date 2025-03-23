@@ -4134,50 +4134,6 @@ textarea.form-control-lg {
 }
 
 
-@media (max-width: 768px) {
-  .portfolio-modal .modal-dialog {
-      width: 100vw; /* Lebar penuh layar */
-      height: 100vh; /* Tinggi penuh layar */
-      margin: 0; /* Hilangkan margin */
-      padding: 0; /* Hilangkan padding */
-      display: flex;
-      align-items: center; /* Pusatkan konten */
-      justify-content: center;
-  }
-
-  .portfolio-modal .modal-content {
-      width: 100vw;
-      height: 100vh;
-      border-radius: 0; /* Hilangkan sudut membulat */
-      padding: 15px; /* Beri sedikit ruang agar konten tidak mepet */
-      overflow-y: auto; /* Aktifkan scroll jika konten panjang */
-  }
-
-  .portfolio-modal .modal-body {
-      width: 100%;
-      padding: 10px; /* Sesuaikan padding agar nyaman */
-  }
-
-  /* Pastikan teks responsif */
-  .portfolio-modal .modal-body h1 {
-      font-size: 18px;
-      text-align: center; /* Rata tengah */
-  }
-
-  .portfolio-modal .modal-body p {
-      font-size: 14px;
-      line-height: 1.6;
-      text-align: justify;
-  }
-
-  /* Gambar responsif */
-  .portfolio-modal .news-item-img {
-      width: 100%;
-      height: auto;
-      border-radius: 5px;
-  }
-}
-
 
 @media (min-width: 576px) {
   .navbar-expand-sm {
