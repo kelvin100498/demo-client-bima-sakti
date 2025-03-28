@@ -575,6 +575,12 @@ progress {
   margin-right: 0.5rem;
 }
 
+@media (max-width: 768px) {
+  .info-lain {
+      display: none;
+  }
+}
+
 .initialism {
   font-size: 0.875em;
   text-transform: uppercase;
