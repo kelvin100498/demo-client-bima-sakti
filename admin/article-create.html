@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        http-equiv="Cache-Control"
+        content="no-cache, no-store, must-revalidate">
+
+    <meta
+        http-equiv="Pragma"
+        content="no-cache">
+
+    <meta
+        http-equiv="Expires"
+        content="0">
+
+    <title>
+        Tambah Artikel
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/app.css">
+
+    <link
+        rel="stylesheet"
+        href="css/article-create.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- ==========================
+         SIDEBAR
+    =========================== -->
+
+    <div id="sidebar"></div>
+
+    <!-- ==========================
+         MAIN
+    =========================== -->
+
+    <main class="main-content article-create-page">
+
+        <!-- ==========================
+             TOPBAR
+        =========================== -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h3>
+                    Tambah Artikel
+                </h3>
+
+                <p>
+                    Buat artikel baru untuk website LBH BIMA SAKTI.
+                </p>
+
+            </div>
+
+            <div>
+
+                <a
+                    href="article.html"
+                    class="btn-secondary">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Kembali
+
+                </a>
+
+            </div>
+
+        </header>
+
+        <!-- ==========================
+             CONTENT
+        =========================== -->
+
+        <div class="article-create-wrapper">
+
+            <!-- ==========================
+                 FORM
+            =========================== -->
+
+            <section class="panel article-create-panel">
+
+                <h2>
+                    Informasi Artikel
+                </h2>
+
+                <p class="panel-description">
+
+                    Lengkapi informasi artikel sebelum dipublikasikan.
+
+                </p>
+
+                <!-- ==========================
+                     TITLE
+                =========================== -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Judul Artikel
+
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        class="form-control"
+                        placeholder="Masukkan judul artikel">
+
+                    <div
+                        id="titleError"
+                        class="form-error">
+
+                        Judul artikel wajib diisi.
+
+                    </div>
+
+                </div>
+
+                <!-- ==========================
+                     SLUG
+                =========================== -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Slug URL
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="slug"
+                        class="form-control"
+                        readonly>
+
+                    <small>
+
+                        Slug akan dibuat otomatis.
+
+                    </small>
+
+                </div>
+
+                <!-- ==========================
+                     DATE
+                =========================== -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Tanggal Artikel
+
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        class="form-control">
+
+                    <div
+                        id="dateError"
+                        class="form-error">
+
+                        Tanggal wajib diisi.
+
+                    </div>
+
+                </div>
+
+                <!-- ==========================
+                     AUTHOR
+                =========================== -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Penulis
+
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="author"
+                        class="form-control"
+                        placeholder="Nama Penulis">
+
+                    <div
+                        id="authorError"
+                        class="form-error">
+
+                        Nama penulis wajib diisi.
+
+                    </div>
+
+                </div>
+
+                                <!-- ==========================
+                     THUMBNAIL
+                =========================== -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Thumbnail URL
+
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="thumbnail"
+                        class="form-control"
+                        placeholder="https://domain.com/image.jpg">
+
+                    <div
+                        id="thumbnailError"
+                        class="form-error">
+
+                        Thumbnail wajib diisi.
+
+                    </div>
+
+                    <small>
+
+                        Gunakan URL gambar dengan format JPG, PNG, atau WEBP.
+
+                    </small>
+
+                </div>
+
+                <!-- PREVIEW IMAGE -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Preview Thumbnail
+
+                    </label>
+
+                    <div class="thumbnail-preview">
+
+                        <img
+                            id="thumbnailPreview"
+                            src=""
+                            alt="Preview Thumbnail"
+                            style="display:none;">
+
+                        <div
+                            id="thumbnailPlaceholder"
+                            class="thumbnail-placeholder">
+
+                            <i class="fa-regular fa-image"></i>
+
+                            <span>
+
+                                Preview thumbnail akan tampil di sini
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ==========================
+                     SOURCE
+                =========================== -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Source
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="source"
+                        class="form-control"
+                        placeholder="https://contoh.com/artikel">
+
+                    <small>
+
+                        Isi apabila artikel berasal dari website lain.
+
+                    </small>
+
+                </div>
+
+                <!-- ==========================
+                     STATUS
+                =========================== -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Status
+
+                    </label>
+
+                    <select
+                        id="status"
+                        class="form-control">
+
+                        <option value="DRAFT">
+
+                            Draft
+
+                        </option>
+
+                        <option value="PUBLISH">
+
+                            Publish
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- ==========================
+                     CONTENT
+                =========================== -->
+
+                <div class="form-group">
+
+                    <label>
+
+                        Isi Artikel
+
+                        <span class="required">*</span>
+
+                    </label>
+
+                    <textarea
+                        id="content"
+                        class="form-control editor"
+                        rows="18"
+                        placeholder="Tulis isi artikel di sini..."></textarea>
+
+                    <div
+                        id="contentError"
+                        class="form-error">
+
+                        Isi artikel wajib diisi.
+
+                    </div>
+
+                    <small>
+
+                        Editor akan menggunakan CKEditor.
+
+                    </small>
+
+                </div>
+
+            </section>
+
+            <!-- ===================================================
+RIGHT PANEL
+=================================================== -->
+
+<aside class="article-sidebar">
+
+    <!-- PUBLISH -->
+
+    <section class="panel publish-panel">
+
+        <h3>
+
+            Publish
+
+        </h3>
+
+        <p>
+
+            Tentukan status artikel sebelum disimpan.
+
+        </p>
+
+        <div class="publish-status">
+
+            <span class="status-badge draft"
+                  id="statusPreview">
+
+                Draft
+
+            </span>
+
+        </div>
+
+        <div class="publish-action">
+
+            <button
+                id="btnSaveDraft"
+                class="btn-secondary w-100">
+
+                <i class="fa-regular fa-floppy-disk"></i>
+
+                Simpan Draft
+
+            </button>
+
+            <button
+                id="btnPublish"
+                class="btn-primary w-100">
+
+                <i class="fa-solid fa-paper-plane"></i>
+
+                Publish Artikel
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+</aside>
+
+</div>
+<!-- END article-create-wrapper -->
+
+<!-- ===================================================
+LOADING
+=================================================== -->
+
+<!-- <div
+class="loading-overlay"
+id="loadingSave">
+
+    <div class="loading-box">
+
+        <div class="loading-spinner"></div>
+
+        <h3>
+
+            Menyimpan Artikel...
+
+        </h3>
+
+        <p>
+
+            Mohon tunggu sebentar.
+
+        </p>
+
+    </div>
+
+</div> -->
+
+<script src="js/sidebar.js"></script>
+
+<script src="js/config.js"></script>
+
+<script src="js/api.js"></script>
+
+<script src="js/auth.js"></script>
+
+<script src="js/article-create.js"></script>
+
+<script>
+
+loadSidebar("article");
+
+</script>
+
+</body>
+
+</html>

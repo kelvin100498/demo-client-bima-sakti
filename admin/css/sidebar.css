@@ -1,0 +1,326 @@
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:260px;
+
+    height:100vh;
+
+    background:#111827;
+
+    color:#fff;
+
+    padding:25px;
+
+    overflow-y:auto;
+
+    display:flex;
+
+    flex-direction:column;
+
+    animation:sidebarShow .45s ease;
+
+    box-shadow:
+    10px 0 35px rgba(0,0,0,.15);
+
+}
+
+
+/* =========================================
+   BRAND
+========================================= */
+
+.brand{
+
+    margin-bottom:40px;
+
+    animation:brandShow .7s ease;
+
+}
+
+.brand h2{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+}
+
+.brand span{
+
+    display:block;
+
+    margin-top:5px;
+
+    color:#9ca3af;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================
+   MENU
+========================================= */
+
+.sidebar nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.sidebar nav a{
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:14px 16px;
+
+    border-radius:12px;
+
+    color:#d1d5db;
+
+    text-decoration:none;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    transition:all .3s ease;
+
+    opacity:0;
+
+    transform:translateX(-18px);
+
+    animation:menuFade .4s forwards;
+
+}
+
+
+/* Delay tiap menu */
+
+.sidebar nav a:nth-child(1){
+
+    animation-delay:.15s;
+
+}
+
+.sidebar nav a:nth-child(2){
+
+    animation-delay:.25s;
+
+}
+
+.sidebar nav a:nth-child(3){
+
+    animation-delay:.35s;
+
+}
+
+.sidebar nav a:nth-child(4){
+
+    animation-delay:.45s;
+
+}
+
+.sidebar nav a:nth-child(5){
+
+    animation-delay:.55s;
+
+}
+
+
+/* Hover */
+
+.sidebar nav a:hover{
+
+    background:#1d4ed8;
+
+    color:#fff;
+
+    transform:translateX(6px);
+
+}
+
+
+/* Active */
+
+.sidebar nav a.active{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    box-shadow:
+    0 10px 25px rgba(37,99,235,.35);
+
+}
+
+
+/* Shine Effect */
+
+.sidebar nav a::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:80px;
+
+    height:100%;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.18),
+
+        transparent
+
+    );
+
+    transform:skewX(-20deg);
+
+}
+
+.sidebar nav a:hover::before{
+
+    animation:shine .8s;
+
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+.sidebar::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.sidebar::-webkit-scrollbar-thumb{
+
+    background:#374151;
+
+    border-radius:20px;
+
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+@keyframes sidebarShow{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(-35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+@keyframes brandShow{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes menuFade{
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+@keyframes shine{
+
+    from{
+
+        left:-120%;
+
+    }
+
+    to{
+
+        left:140%;
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:900px){
+
+    .sidebar{
+
+        display:none;
+
+    }
+
+}

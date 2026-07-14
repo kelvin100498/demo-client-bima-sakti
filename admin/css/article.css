@@ -1,0 +1,442 @@
+/* ===========================================
+   ARTICLE PAGE
+=========================================== */
+
+.article-panel{
+
+    margin-top:25px;
+
+}
+
+
+/* ===========================
+HEADER
+=========================== */
+
+.article-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:25px;
+
+}
+
+.article-header h3{
+
+    font-size:22px;
+
+    color:#111827;
+
+}
+
+
+/* ===========================
+BUTTON
+=========================== */
+
+.btn-primary{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 20px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+    box-shadow:0 6px 15px rgba(37,99,235,.25);
+
+}
+
+.btn-primary:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
+
+}
+
+
+/* ===========================
+SEARCH
+=========================== */
+
+.article-toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:20px;
+
+}
+
+.search-box{
+
+    position:relative;
+
+    width:360px;
+
+}
+
+.search-box i{
+
+    position:absolute;
+
+    left:15px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#9ca3af;
+
+}
+
+.search-box input{
+
+    width:100%;
+
+    height:46px;
+
+    padding-left:45px;
+
+    padding-right:15px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    outline:none;
+
+    transition:.25s;
+
+    background:#fff;
+
+}
+
+.search-box input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+
+}
+
+
+/* ===========================
+TABLE
+=========================== */
+
+.table-wrapper{
+
+    overflow-x:auto;
+
+    border-radius:12px;
+
+}
+
+.article-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:#fff;
+
+}
+
+.article-table thead{
+
+    background:#f9fafb;
+
+}
+
+.article-table th{
+
+    padding:16px;
+
+    text-align:left;
+
+    font-size:14px;
+
+    color:#374151;
+
+    border-bottom:1px solid #e5e7eb;
+
+}
+
+.article-table td{
+
+    padding:16px;
+
+    border-bottom:1px solid #f1f5f9;
+
+    vertical-align:middle;
+
+}
+
+.article-table tbody tr{
+
+    transition:.2s;
+
+}
+
+.article-table tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+
+/* ===========================
+THUMBNAIL
+=========================== */
+
+.article-thumbnail{
+
+    width:70px;
+
+    height:50px;
+
+    object-fit:cover;
+
+    border-radius:8px;
+
+    border:1px solid #e5e7eb;
+
+}
+
+
+/* ===========================
+BADGE
+=========================== */
+
+.badge{
+
+    display:inline-block;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+.badge.publish{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+}
+
+.badge.draft{
+
+    background:#fef3c7;
+
+    color:#92400e;
+
+}
+
+
+/* ===========================
+ACTION BUTTON
+=========================== */
+
+.action-group{
+
+    display:flex;
+
+    gap:8px;
+
+}
+
+.action-btn{
+
+    width:36px;
+
+    height:36px;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:15px;
+
+}
+
+.action-btn.edit{
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+}
+
+.action-btn.edit:hover{
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
+
+.action-btn.delete{
+
+    background:#fef2f2;
+
+    color:#dc2626;
+
+}
+
+.action-btn.delete:hover{
+
+    background:#dc2626;
+
+    color:#fff;
+
+}
+
+
+/* ===========================
+LOADING
+=========================== */
+
+.table-loading{
+
+    text-align:center;
+
+    padding:40px;
+
+    color:#6b7280;
+
+}
+
+.table-loading .mini-spinner{
+
+    margin-right:10px;
+
+}
+
+
+/* ===========================
+EMPTY
+=========================== */
+
+.empty-state{
+
+    padding:70px 20px;
+
+    text-align:center;
+
+}
+
+.empty-state i{
+
+    font-size:70px;
+
+    color:#cbd5e1;
+
+    margin-bottom:20px;
+
+}
+
+.empty-state h3{
+
+    font-size:24px;
+
+    margin-bottom:10px;
+
+}
+
+.empty-state p{
+
+    color:#6b7280;
+
+    margin-bottom:25px;
+
+    line-height:1.7;
+
+}
+
+
+/* ===========================
+CARD
+=========================== */
+
+.card{
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+
+/* ===========================
+RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+    .article-toolbar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:15px;
+
+    }
+
+    .search-box{
+
+        width:100%;
+
+    }
+
+    .article-table{
+
+        min-width:850px;
+
+    }
+
+}
