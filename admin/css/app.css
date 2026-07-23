@@ -1058,5 +1058,24 @@ body{
     
     }
 
+    /* lottie loading spinner */
+    .mini-spinner-lottie {
+        width: 18px;          /* Ubah angka ini (misal 16px atau 18px) untuk memperkecil */
+        height: 18px;         /* Samakan nilai height dengan width-nya */
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 5px;     /* Memberi sedikit jarak jika ada teks di dekatnya */
+    }
+
+
+    /* lottie loading spinner */
+    .purple-spinner-lottie {
+        width: 64px;          /* Ubah angka ini (misal 16px atau 18px) untuk memperkecil */
+        height: 64px;         /* Samakan nilai height dengan width-nya */
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: -15px; 
+        margin-bottom: -15px; 
+    }
 
  
