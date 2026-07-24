@@ -41,6 +41,10 @@ document.addEventListener(
 
         initLogout();
 
+        initDeleteModal();
+
+        initEdit();
+
     }
 );
 
@@ -53,6 +57,7 @@ GLOBAL DATA
 */
 
 let articles = [];
+let deleteId = null;
 
 
 
@@ -64,48 +69,143 @@ LOAD ARTICLE
 
 async function loadArticles() {
 
-    // sementara dummy
-    // nanti diganti API
+    try {
 
-    articles = [
+        const body = new URLSearchParams();
 
-        {
+        body.append("action", "getArticles");
 
-            id: 1,
+        // Jika nanti membutuhkan token
+        // body.append("token", localStorage.getItem("token"));
 
-            title: "Pentingnya Bantuan Hukum",
+        const response = await fetch(API_URL, {
 
-            status: "Publish",
+            method: "POST",
 
-            date: "14 Juli 2026",
+            body: body
 
-            image: "https://placehold.co/80x60"
+        });
 
-        },
+        if (!response.ok) {
 
-        {
-
-            id: 2,
-
-            title: "Hak Korban Kekerasan",
-
-            status: "Draft",
-
-            date: "13 Juli 2026",
-
-            image: "https://placehold.co/80x60"
+            throw new Error("HTTP Error : " + response.status);
 
         }
 
-    ];
+        const result = await response.json();
 
-    loadStatistic(articles);
+        console.log(result);
 
-    renderTable(articles);
+        if (!result.success) {
+
+            articles = [];
+
+            loadStatistic(articles);
+
+            renderTable(articles);
+
+            return;
+
+        }
+
+        articles = result.data.map(item => ({
+
+            id: item.id,
+
+            title: item.title,
+
+            status: item.status,
+
+            date: item.date,
+
+            image: item.thumbnail
+
+        }));
+
+        loadStatistic(articles);
+
+        renderTable(articles);
+
+    } catch (err) {
+
+        console.error(err);
+
+        articles = [];
+
+        loadStatistic(articles);
+
+        renderTable(articles);
+
+    }
 
 }
 
+/*
+=====================
+DELETE ARTICLE
+=====================
+*/
 
+async function deleteArticle(id){
+
+    try{
+
+        const body = new URLSearchParams();
+
+        body.append("action","deleteArticle");
+
+        body.append("id",id);
+
+        const response = await fetch(API_URL,{
+
+            method:"POST",
+
+            body:body
+
+        });
+
+        const result = await response.json();
+
+        if(result.success){
+
+            await loadArticles();
+
+            return true;
+
+        }
+
+        alert(result.message);
+
+        return false;
+
+    }catch(err){
+
+        console.error(err);
+
+        showToast("Gagal menghapus artikel.", "error");
+
+        return false;
+
+    }
+
+}
+
+/*
+=====================
+SHOW DELETE MODAL
+=====================
+*/
+
+function showDeleteModal(id, title){
+
+    deleteId = id;
+
+    document.getElementById("deleteMessage").innerHTML =
+        `Apakah Anda yakin ingin menghapus artikel <b>${title}</b>?`;
+
+    document.getElementById("deleteModal").classList.add("show");
+
+}
 
 /*
 =====================
@@ -115,14 +215,14 @@ STATISTIC
 
 function loadStatistic(data) {
 
-    document.getElementById("totalArticle").innerHTML =
+    document.getElementById("totalArticle").textContent =
         data.length;
 
-    document.getElementById("totalPublish").innerHTML =
-        data.filter(x => x.status === "Publish").length;
+    document.getElementById("totalPublish").textContent =
+        data.filter(item => item.status === "PUBLISH").length;
 
-    document.getElementById("totalDraft").innerHTML =
-        data.filter(x => x.status === "Draft").length;
+    document.getElementById("totalDraft").textContent =
+        data.filter(item => item.status === "DRAFT").length;
 
 }
 
@@ -142,15 +242,23 @@ function renderTable(data) {
     const empty =
         document.getElementById("emptyArticle");
 
-    if (data.length === 0) {
+    const emptySearch =
+        document.getElementById("emptySearch");
 
         tbody.innerHTML = "";
 
-        empty.style.display = "block";
-
-        return;
-
-    }
+        if(data.length === 0){
+        
+            emptyArticle.style.display = "block";
+        
+            emptySearch.style.display = "none";
+        
+            return;
+        
+        }
+        
+        emptyArticle.style.display = "none";
+        emptySearch.style.display = "none";
 
     empty.style.display = "none";
 
@@ -194,9 +302,11 @@ ${item.date}
 
 <td>
 
-<span class="${item.status === "Publish"
-                ? "status-publish"
-                : "status-draft"}">
+<span class="${
+    item.status.toUpperCase() === "PUBLISH"
+        ? "status-publish"
+        : "status-draft"
+}">
 
 ${item.status}
 
@@ -207,21 +317,18 @@ ${item.status}
 <td>
 
 <button
-class="btn-icon edit"
-data-id="${item.id}">
+    class="btn-icon edit"
+    data-id="${item.id}">
 
-<i class="fa-solid fa-pen"></i>
+    <i class="fa-solid fa-pen"></i>
 
 </button>
 
 <button
-class="btn-icon delete"
-data-id="${item.id}">
-
-<i class="fa-solid fa-trash"></i>
-
+    class="btn-icon delete"
+    onclick="showDeleteModal(${item.id}, '${item.title.replace(/'/g, "\\'")}')">
+    <i class="fa-solid fa-trash"></i>
 </button>
-
 </td>
 
 </tr>
@@ -242,23 +349,70 @@ SEARCH
 
 function initSearch() {
 
-    document
-        .getElementById("searchArticle")
-        .addEventListener("keyup", function () {
+    const input =
+        document.getElementById("searchArticle");
 
-            const keyword =
-                this.value.toLowerCase();
+    input.addEventListener("keyup", function () {
 
-            const result =
-                articles.filter(item =>
-                    item.title
-                        .toLowerCase()
-                        .includes(keyword)
-                );
+        const keyword =
+            this.value.trim().toLowerCase();
 
-            renderTable(result);
+        const emptyArticle =
+            document.getElementById("emptyArticle");
 
-        });
+        const emptySearch =
+            document.getElementById("emptySearch");
+
+        /*
+        =====================
+        INPUT KOSONG
+        =====================
+        */
+
+        if(keyword === ""){
+
+            emptySearch.style.display = "none";
+
+            renderTable(articles);
+
+            return;
+
+        }
+
+        /*
+        =====================
+        FILTER
+        =====================
+        */
+
+        const result =
+            articles.filter(item =>
+                item.title
+                    .toLowerCase()
+                    .includes(keyword)
+            );
+
+        renderTable(result);
+
+        /*
+        =====================
+        EMPTY SEARCH
+        =====================
+        */
+
+        if(result.length === 0){
+
+            emptyArticle.style.display = "none";
+
+            emptySearch.style.display = "block";
+
+        }else{
+
+            emptySearch.style.display = "none";
+
+        }
+
+    });
 
 }
 
@@ -338,5 +492,133 @@ function initLogout() {
         await Auth.logout();
 
     };
+
+}
+
+/*
+=====================
+DELETE MODAL
+=====================
+*/
+
+function initDeleteModal() {
+
+    const modal = document.getElementById("deleteModal");
+
+    const cancel = document.getElementById("cancelDelete");
+
+    const confirm = document.getElementById("confirmDelete");
+
+    cancel.onclick = () => {
+
+        modal.classList.remove("show");
+
+        deleteId = null;
+
+    };
+
+    modal.onclick = (e) => {
+
+        if (e.target === modal) {
+
+            modal.classList.remove("show");
+
+            deleteId = null;
+
+        }
+
+    };
+
+    confirm.onclick = async () => {
+
+        if (deleteId == null) {
+            return;
+        }
+    
+        confirm.disabled = true;
+    
+        confirm.innerHTML = `
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Menghapus...
+        `;
+    
+        const success = await deleteArticle(deleteId);
+    
+        confirm.disabled = false;
+    
+        confirm.innerHTML = "Hapus";
+    
+        if (success) {
+    
+            modal.classList.remove("show");
+    
+            deleteId = null;
+    
+            showToast("Artikel berhasil dihapus.");
+    
+        }
+    
+    };
+
+}
+
+/*
+=====================
+TOAST
+=====================
+*/
+
+function showToast(message, type = "success") {
+
+    const toast = document.getElementById("toast");
+
+    toast.innerHTML = message;
+
+    toast.className = "toast";
+
+    if (type === "error") {
+
+        toast.classList.add("error");
+
+    }
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 2500);
+
+}
+
+/*
+=====================
+EDIT ARTICLE
+=====================
+*/
+
+function initEdit() {
+
+    document
+        .getElementById("articleTableBody")
+        .addEventListener("click", (e) => {
+
+            const button =
+                e.target.closest(".edit");
+
+            if (!button) {
+
+                return;
+
+            }
+
+            const id =
+                button.dataset.id;
+
+            window.location.href =
+                `article-edit.html?id=${id}`;
+
+        });
 
 }

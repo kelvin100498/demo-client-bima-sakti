@@ -25,6 +25,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <body>
 
+<div id="toast" class="toast"></div>
 <div class="admin-layout">
 
 
@@ -270,7 +271,38 @@ ARTICLE TABLE
     
     
     
-    
+<!-- ==========================
+SEARCH EMPTY
+=========================== -->
+
+<div
+class="empty-state"
+id="emptySearch"
+style="display:none;">
+
+    <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+    <lottie-player 
+        src="../admin/assets/cat.json" 
+        background="transparent" 
+        speed="1" 
+        class="cat-lottie" 
+        loop 
+        autoplay>
+    </lottie-player>
+
+    <h3>
+
+        Artikel Tidak Ditemukan
+
+    </h3>
+
+    <p>
+
+        Tidak ada artikel yang sesuai dengan kata kunci pencarian.
+
+    </p>
+
+</div>
     
     <!-- ==========================
     EMPTY STATE
@@ -366,6 +398,44 @@ ARTICLE TABLE
 
     </div>
 
+
+</div>
+
+<!-- DELETE MODAL -->
+
+<div class="modal-overlay" id="deleteModal">
+
+    <div class="logout-modal">
+
+        <div class="modal-icon">
+            🗑️
+        </div>
+
+        <h3>
+            Hapus Artikel
+        </h3>
+
+        <p id="deleteMessage">
+            Apakah Anda yakin ingin menghapus artikel ini?
+        </p>
+
+        <div class="modal-action">
+
+            <button
+                class="btn-cancel"
+                id="cancelDelete">
+                Batal
+            </button>
+
+            <button
+                class="btn-logout"
+                id="confirmDelete">
+                Hapus
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 

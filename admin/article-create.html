@@ -74,17 +74,14 @@
             </div>
 
             <div>
-
                 <a
-                    href="article.html"
+                    href="javascript:void(0);"
+                    id="btnBack"
                     class="btn-secondary">
-
+                
                     <i class="fa-solid fa-arrow-left"></i>
-
                     Kembali
-
                 </a>
-
             </div>
 
         </header>
@@ -99,7 +96,9 @@
                  FORM
             =========================== -->
 
-            <section class="panel article-create-panel">
+            <section
+            id="articleForm"
+            class="panel article-create-panel">
 
                 <h2>
                     Informasi Artikel
@@ -324,37 +323,6 @@
 
                 </div>
 
-                <!-- ==========================
-                     STATUS
-                =========================== -->
-
-                <div class="form-group">
-
-                    <label>
-
-                        Status
-
-                    </label>
-
-                    <select
-                        id="status"
-                        class="form-control">
-
-                        <option value="DRAFT">
-
-                            Draft
-
-                        </option>
-
-                        <option value="PUBLISH">
-
-                            Publish
-
-                        </option>
-
-                    </select>
-
-                </div>
 
                 <!-- ==========================
                      CONTENT
@@ -384,12 +352,6 @@
 
                     </div>
 
-                    <small>
-
-                        Editor akan menggunakan CKEditor.
-
-                    </small>
-
                 </div>
 
             </section>
@@ -416,21 +378,10 @@ RIGHT PANEL
 
         </p>
 
-        <div class="publish-status">
-
-            <span class="status-badge draft"
-                  id="statusPreview">
-
-                Draft
-
-            </span>
-
-        </div>
-
         <div class="publish-action">
 
             <button
-                id="btnSaveDraft"
+                id="btnDraft"
                 class="btn-secondary w-100">
 
                 <i class="fa-regular fa-floppy-disk"></i>
@@ -457,15 +408,20 @@ RIGHT PANEL
 </aside>
 
 </div>
+
+<div
+    id="toast"
+    class="toast">
+</div>
 <!-- END article-create-wrapper -->
 
 <!-- ===================================================
 LOADING
 =================================================== -->
-
-<!-- <div
+<div
 class="loading-overlay"
-id="loadingSave">
+id="loadingSave"
+style="display:none;">
 
     <div class="loading-box">
 
@@ -485,7 +441,50 @@ id="loadingSave">
 
     </div>
 
-</div> -->
+</div>
+
+<!-- ==========================
+     BACK CONFIRM MODAL
+=========================== -->
+
+<div
+    id="backModal"
+    class="modal-overlay">
+
+    <div class="logout-modal">
+
+        <h3>
+            Tinggalkan Halaman?
+        </h3>
+
+        <p>
+            Perubahan yang belum disimpan akan hilang.
+            Apakah Anda yakin ingin meninggalkan halaman ini?
+        </p>
+
+        <div class="modal-action">
+
+            <button
+                id="cancelBack"
+                class="btn-secondary">
+
+                Batal
+
+            </button>
+
+            <button
+                id="confirmBack"
+                class="btn-danger">
+
+                Tinggalkan
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 <script src="js/sidebar.js"></script>
 

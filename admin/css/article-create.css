@@ -456,3 +456,321 @@ RIGHT SIDEBAR
     height:fit-content;
 
 }
+
+/* =====================================
+TOAST
+===================================== */
+
+.toast{
+
+    position:fixed;
+
+    top:30px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:99999;
+
+    min-width:300px;
+    max-width:500px;
+
+    padding:14px 20px;
+
+    border-radius:10px;
+
+    background:#222;
+
+    color:#fff;
+
+    text-align:center;
+
+    font-size:14px;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+    transition:
+        opacity .3s ease,
+        transform .3s ease;
+
+}
+
+
+/* =====================================
+TOAST SHOW
+===================================== */
+
+.toast.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+}
+
+/* =====================================
+LOADING OVERLAY
+===================================== */
+
+.loading-overlay{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(255,255,255,.75);
+
+    z-index:99998;
+
+}
+
+
+/* =====================================
+LOADING BOX
+===================================== */
+
+.loading-box{
+
+    width:320px;
+
+    padding:30px;
+
+    background:#fff;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+
+/* =====================================
+LOADING SPINNER
+===================================== */
+
+.loading-spinner{
+
+    width:45px;
+    height:45px;
+
+    margin:0 auto 20px;
+
+    border:4px solid #e5e7eb;
+
+    border-top-color:#2563eb;
+
+    border-radius:50%;
+
+    animation:loadingSpin .8s linear infinite;
+
+}
+
+
+@keyframes loadingSpin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ===========================
+   LOADING ARTICLE
+=========================== */
+
+.loading-article{
+
+    min-height:500px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.loading-article .loading-box{
+
+    text-align:center;
+
+}
+
+.loading-article .loading-spinner{
+
+    width:48px;
+
+    height:48px;
+
+    margin:0 auto 20px;
+
+    border:5px solid #e5e7eb;
+
+    border-top-color:#2563eb;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+.loading-article h3{
+
+    margin-bottom:8px;
+
+}
+
+.loading-article p{
+
+    color:#6b7280;
+
+}
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* =====================================
+   BACK MODAL - CONFIRM BUTTON
+===================================== */
+
+#backModal #confirmBack{
+
+    background:#dc2626 !important;
+
+    border:1px solid #dc2626 !important;
+
+    color:#ffffff !important;
+
+}
+
+
+#backModal #confirmBack:hover{
+
+    background:#b91c1c !important;
+
+    border-color:#b91c1c !important;
+
+}
+
+/* thumbnail */
+/* ===========================
+   THUMBNAIL PREVIEW
+=========================== */
+
+.thumbnail-preview{
+
+    width:100%;
+
+    height:310px;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:#fafafa;
+
+}
+
+
+/* ===========================
+   PREVIEW IMAGE
+=========================== */
+
+.thumbnail-preview img{
+
+    max-width:100%;
+
+    max-height:100%;
+
+    width:auto;
+
+    height:auto;
+
+    object-fit:contain;
+
+    display:block;
+
+}
+
+
+/* ===========================
+   PLACEHOLDER
+=========================== */
+
+.thumbnail-placeholder{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    color:#9ca3af;
+
+    text-align:center;
+
+}
+
+
+.thumbnail-placeholder i{
+
+    font-size:50px;
+
+}
+
+
+.thumbnail-placeholder span{
+
+    font-size:14px;
+
+}

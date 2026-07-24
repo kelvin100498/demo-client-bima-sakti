@@ -1078,4 +1078,14 @@ body{
         margin-bottom: -15px; 
     }
 
+       /* lottie cat  */
+    .cat-lottie {
+        width: 154px;          /* Ubah angka ini (misal 16px atau 18px) untuk memperkecil */
+        height: 154px;         /* Samakan nilai height dengan width-nya */
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: -15px; 
+        margin-bottom: -15px; 
+    }
+
  

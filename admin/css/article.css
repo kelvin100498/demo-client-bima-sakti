@@ -261,71 +261,72 @@ BADGE
 }
 
 
-/* ===========================
-ACTION BUTTON
+//* ===========================
+   ACTION BUTTON
 =========================== */
 
-.action-group{
+.btn-icon{
 
-    display:flex;
+    width:34px;
 
-    gap:8px;
+    height:34px;
 
-}
+    padding:0;
 
-.action-btn{
-
-    width:36px;
-
-    height:36px;
-
-    border:none;
-
-    border-radius:8px;
-
-    cursor:pointer;
-
-    transition:.2s;
-
-    display:flex;
+    display:inline-flex;
 
     align-items:center;
 
     justify-content:center;
 
-    font-size:15px;
+    border:1px solid transparent;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
 
 }
 
-.action-btn.edit{
 
-    background:#eff6ff;
+/* ===========================
+   EDIT BUTTON
+=========================== */
 
-    color:#2563eb;
 
-}
-
-.action-btn.edit:hover{
+.btn-icon.edit:hover{
 
     background:#2563eb;
 
     color:#fff;
 
-}
+    border-color:#2563eb;
 
-.action-btn.delete{
-
-    background:#fef2f2;
-
-    color:#dc2626;
+    transform:translateY(-1px);
 
 }
 
-.action-btn.delete:hover{
 
-    background:#dc2626;
+/* ===========================
+   DELETE BUTTON
+=========================== */
+
+.btn-icon.delete:hover{
+
+    background:#e11d48;
 
     color:#fff;
+
+    border-color:#e11d48;
+
+    transform:translateY(-1px);
 
 }
 
@@ -407,6 +408,103 @@ CARD
     transform:translateY(-3px);
 
     box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.toast{
+
+    position:fixed;
+
+    top:24px;
+
+    right:24px;
+
+    background:#22c55e;
+
+    color:#fff;
+
+    padding:14px 20px;
+
+    border-radius:10px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+    opacity:0;
+
+    transform:translateY(-20px);
+
+    transition:.3s;
+
+    z-index:99999;
+
+    font-weight:600;
+
+}
+
+.toast.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+.toast.error{
+
+    background:#ef4444;
+
+}
+
+/* ===========================
+   ARTICLE STATUS
+=========================== */
+
+.status-publish,
+.status-draft{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:85px;
+
+    padding:6px 12px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    line-height:1;
+
+}
+
+
+/* ===========================
+   PUBLISH
+=========================== */
+
+.status-publish{
+
+    color:#166534;
+
+    background:#dcfce7;
+
+}
+
+
+/* ===========================
+   DRAFT
+=========================== */
+
+.status-draft{
+
+    color:#92400e;
+
+    background:#fef3c7;
 
 }
 

@@ -222,21 +222,49 @@ document.addEventListener(
 
         try{
     
+            /*
+            =====================
+            TOTAL ARTICLE
+            =====================
+            */
+    
+            const body = new URLSearchParams();
+    
+            body.append("action", "getArticles");
+    
+            const response = await fetch(API_URL,{
+                method:"POST",
+                body:body
+            });
+    
+            const result = await response.json();
+    
+            document.getElementById("totalArticle").innerHTML =
+                result.success ? result.total : 0;
+    
+            /*
+            =====================
+            TOTAL LAWYER
+            =====================
+            */
+    
             const statistic = {
-                article:25,
                 lawyer:8
             };
     
-            document.getElementById("totalArticle").innerHTML =
-            statistic.article;
-    
             document.getElementById("totalLawyer").innerHTML =
-            statistic.lawyer;
+                statistic.lawyer;
+    
+            /*
+            =====================
+            TOTAL VISITOR
+            =====================
+            */
     
             const visitor = await totalVisitorApi();
     
             document.getElementById("totalVisitor").innerHTML =
-            visitor.total;
+                visitor.total;
     
         }
         catch(error){
