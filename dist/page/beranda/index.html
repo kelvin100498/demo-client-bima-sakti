@@ -147,6 +147,18 @@
                         </div>
                     </div>
                     <div class="row justify-content-center">
+                        <div class="col-lg-4">
+                            <div class="team-member">
+                                <a href="../indah-permata-sari/">
+                                    <img class="mx-auto rounded-circle" src="../../assets/img/team/6.jpg" alt="..." />
+                                </a>
+                                <h4>Indah Permata Sari, S.H.,M.H.</h4>
+                                <p class="text-muted">Partner</p>
+                                <a class="btn btn-dark btn-social mx-2" target="_blank" href="https://www.instagram.com/adv_indahpermatasari.sh/" aria-label="Larry Parker Twitter Profile"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-dark btn-social mx-2" target="_blank" href="https://www.facebook.com/share/1HVz5cTHHt/?mibextid=wwXIfr" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-dark btn-social mx-2" target="_blank" href="https://www.tiktok.com/@nadinps299?_r=1&_t=ZS-98GW1LBy6Mh" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
                         <div class="col-md-6 col-lg-4">
                             <div class="team-member">
                                 <a href="../agung-dwi-harmono/">
@@ -169,6 +181,18 @@
                                 <a class="btn btn-dark btn-social mx-2" target="_blank" href="https://www.instagram.com/febrisusanti.98/" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-instagram"></i></a>
                                 <a class="btn btn-dark btn-social mx-2" target="_blank" href="https://www.facebook.com/febri.susanti.12" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-dark btn-social mx-2" target="_blank" href="https://www.tiktok.com/@febrisusanti98" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="team-member">
+                                <a href="../innesholati/">
+                                    <img class="mx-auto rounded-circle" src="../../assets/img/team/7.jpg" alt="..." />
+                                </a>
+                                <h4>Inessholati, S.H.</h4>
+                                <p class="text-muted">Partner</p>
+                                <a class="btn btn-dark btn-social mx-2" target="_blank" href="https://www.instagram.com/inessgin/" aria-label="Diana Petersen Twitter Profile"><i class="fab fa-instagram"></i></a>
+                                <a class="btn btn-dark btn-social mx-2" target="_blank" href="https://www.facebook.com/" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-dark btn-social mx-2" target="_blank" href="https://www.tiktok.com/" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-tiktok"></i></a>
                             </div>
                         </div>
                     </div>
@@ -363,9 +387,16 @@
                     <div>
                         <a class="icon-company-text" href="#page-top">Lembaga Bantuan Hukum<br>Bima Sakti</a>
                         <div class="contact-info">
-                            <p><i class="fas fa-phone-alt"></i> <a href="https://wa.me/+6281278041400" 
-                                target="_blank"> +62 812-7804-1400</a></p>
-                            <p><i class="fas fa-envelope"></i> <a href="mailto:lembagabantuanhukumbimasakti@gmail.com">lembagabantuanhukumbimasakti@gmail.com</a></p>
+                            <p><i class="fas fa-phone-alt"></i> <a href="https://wa.me/+6281278041400" target="_blank"> 081278041400 / </a>
+                                <a href="https://wa.me/+6285273400916" target="_blank">085273400916 </a>
+                            </p>
+                            <p>
+                                <i class="fab fa-instagram"></i> 
+                                <a href="https://www.instagram.com/lbh_bimasakti/" target="_blank">
+                                    @lbh_bimasakti
+                                </a>
+                            </p>
+                            <p><i class="fas fa-envelope"></i> <a href="mailto:bimasaktilembagabantuanhukum@gmail.com ">bimasaktilembagabantuanhukum@gmail.com </a></p>
                             <a href="https://maps.app.goo.gl/ZHTtVe27kvCsBQmk8" 
                             target="_blank" ><i class="fas fa-home"></i> Jl. Mayor Salim Batubara Ruko No.5,Sekip Jaya, Kec. Kemuning<br>Kota Palembang, Sumatera Selatan 30127</a>
                         </div>
@@ -446,9 +477,9 @@
                                         Jika Anda memiliki pertanyaan tentang Kebijakan Privasi ini atau memerlukan informasi lebih lanjut, silakan hubungi kami:
                                         <br> 
                                         <br> 
-                                        Email: lembagabantuanhukumbimasakti@gmail.com
+                                        Email: bimasaktilembagabantuanhukum@gmail.com 
                                         <br>
-                                        Telepon: +62 812-7804-1400
+                                        Telepon: 081278041400 / 085273400916
                                         <br>
                                         Alamat Kantor: Jl. Mayor Salim Batubara Ruko No.5, Sekip Jaya, Kec. Kemuning, Kota Palembang, Sumatera Selatan 30127
                                         </li>
@@ -582,5 +613,25 @@
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <script src="../../admin//js/config.js"></script>
+        <script src="../../admin//js/api.js"></script>
+
+
+    <!-- Counter Pengunjung -->
+        <script>
+            document.addEventListener("DOMContentLoaded", async () => {
+            
+                try {
+            
+                    await addVisitorApi();
+            
+                } catch (error) {
+            
+                    console.error("Add Visitor Error:", error);
+            
+                }
+            
+            });
+        </script>
     </body>
 </html>

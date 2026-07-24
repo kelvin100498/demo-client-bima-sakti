@@ -9,7 +9,8 @@
         "build:scripts": "node scripts/build-scripts.js",
         "build:scss": "node scripts/build-scss.js",
         "clean": "node scripts/clean.js",
-        "start": "browser-sync start --server dist --files 'dist/css/*.css'",
+        "start": "browser-sync start --server dist --files \"dist/**/*\" --startPath page/beranda/",
+        "start:admin": "browser-sync start --server dist --files \"dist/**/*\" --startPath admin",
         "start:debug": "npm run build && node scripts/start-debug.js",
         "deploy": "gh-pages -d dist",
         "start:index": "browser-sync start --server dist --files 'dist/index.html, dist/css/*.css' --startPath index.html"    
