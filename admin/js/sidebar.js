@@ -2,7 +2,7 @@ async function loadSidebar(activePage) {
 
     console.log("Load Sidebar :", activePage);
 
-    const response = await fetch("components/sidebar.html", {
+    const response = await fetch("../../components/sidebar.html", {
         cache: "no-store"
     });
 

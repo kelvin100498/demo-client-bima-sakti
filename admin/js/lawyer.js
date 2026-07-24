@@ -8,7 +8,7 @@ document.addEventListener(
 
         if (!valid) {
 
-            window.location.href = "index.html";
+            window.location.href = "/admin";
 
             return;
 

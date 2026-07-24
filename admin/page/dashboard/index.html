@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <meta
+        http-equiv="Cache-Control"
+        content="no-cache, no-store, must-revalidate">
+
+    <meta
+        http-equiv="Pragma"
+        content="no-cache">
+
+    <meta
+        http-equiv="Expires"
+        content="0">
+
+    <title>
+        Dashboard Admin
+    </title>
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="../../css/app.css">
+
+    <!-- Font Awesome -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Lottie -->
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- ==========================
+         SIDEBAR
+    =========================== -->
+
+    <div id="sidebar"></div>
+
+    <!-- ==========================
+         MAIN
+    =========================== -->
+
+    <main class="main-content">
+
+        <!-- ==========================
+             TOPBAR
+        =========================== -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h3>
+                    Dashboard
+                </h3>
+
+                <p>
+                    Panel administrasi website
+                </p>
+
+            </div>
+
+            <div class="user-info">
+
+                <strong id="fullname">
+
+                    <lottie-player
+                        src="../../assets/Auction_hammer.json"
+                        background="transparent"
+                        speed="1"
+                        class="purple-spinner-lottie"
+                        loop
+                        autoplay>
+                    </lottie-player>
+
+                </strong>
+
+                <small id="role">
+
+                    Loading...
+
+                </small>
+
+            </div>
+
+        </header>
+
+        <!-- ==========================
+             WELCOME
+        =========================== -->
+
+        <section class="welcome-card">
+
+            <h2>
+
+                Selamat Datang 👋
+
+            </h2>
+
+            <p>
+
+                Kelola seluruh website LBH Bima Sakti melalui dashboard administrator.
+
+            </p>
+
+        </section>
+
+        <!-- ==========================
+             STATISTIC
+        =========================== -->
+
+        <section class="stats">
+
+            <div class="card">
+
+                <h4>
+
+                    Total Artikel
+
+                </h4>
+
+                <strong id="totalArticle">
+
+                    <lottie-player
+                        src="../../assets/loading.json"
+                        background="transparent"
+                        speed="1"
+                        class="mini-spinner-lottie"
+                        loop
+                        autoplay>
+                    </lottie-player>
+
+                </strong>
+
+            </div>
+
+            <div class="card">
+
+                <h4>
+
+                    Total Advokat
+
+                </h4>
+
+                <strong id="totalLawyer">
+
+                    <lottie-player
+                        src="../../assets/loading.json"
+                        background="transparent"
+                        speed="1"
+                        class="mini-spinner-lottie"
+                        loop
+                        autoplay>
+                    </lottie-player>
+
+                </strong>
+
+            </div>
+
+            <div class="card">
+
+                <h4>
+
+                    Total Pengunjung Website
+
+                </h4>
+
+                <strong id="totalVisitor">
+
+                    <lottie-player
+                        src="../../assets/loading.json"
+                        background="transparent"
+                        speed="1"
+                        class="mini-spinner-lottie"
+                        loop
+                        autoplay>
+                    </lottie-player>
+
+                </strong>
+
+            </div>
+
+        </section>
+
+        <!-- ==========================
+             ACTIVITY
+        =========================== -->
+
+        <section class="panel">
+
+            <h3>
+
+                Aktivitas Terbaru
+
+            </h3>
+
+            <div class="activity">
+
+                <p>
+
+                    Belum ada aktivitas terbaru.
+
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- ==========================
+             QUICK MENU
+        =========================== -->
+
+        <section class="panel">
+
+            <h3>
+
+                Menu Cepat
+
+            </h3>
+
+            <div class="quick-menu">
+
+                <a href="../article-create/">
+
+                    Tambah Artikel
+
+                </a>
+
+                <a href="../lawyer/">
+
+                    Kelola Advokat
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- ==========================
+     LOGOUT MODAL
+=========================== -->
+
+<div
+    id="logoutModal"
+    class="modal-overlay">
+
+    <div class="logout-modal">
+
+        <div class="modal-icon">
+
+            ⚠️
+
+        </div>
+
+        <h3>
+
+            Konfirmasi Logout
+
+        </h3>
+
+        <p>
+
+            Apakah Anda yakin ingin keluar dari dashboard administrator?
+
+        </p>
+
+        <div class="modal-action">
+
+            <button
+                id="cancelLogout"
+                class="btn-cancel">
+
+                Batal
+
+            </button>
+
+            <button
+                id="confirmLogout"
+                class="btn-logout">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================
+     SCRIPT
+=========================== -->
+
+<script src="../../js/sidebar.js"></script>
+
+<script src="../../js/config.js"></script>
+
+<script src="../../js/api.js"></script>
+
+<script src="../../js/auth.js"></script>
+
+<script src="../../js/dashboard.js"></script>
+
+<script>
+
+    loadSidebar("dashboard");
+
+</script>
+
+</body>
+
+</html>

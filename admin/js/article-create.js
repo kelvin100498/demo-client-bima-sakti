@@ -20,7 +20,7 @@ document.addEventListener(
 
         if (!valid) {
 
-            window.location.href = "index.html";
+            window.location.href = "/admin";
 
             return;
 
@@ -31,7 +31,7 @@ document.addEventListener(
         INIT
         =====================
         */
-       
+
         initBackButton();
 
         initSlug();
@@ -261,7 +261,7 @@ async function saveArticle(status){
 
             setTimeout(()=>{
 
-                window.location.href="article.html";
+                window.location.href="../article/";
 
             },1000);
 
@@ -279,6 +279,8 @@ async function saveArticle(status){
 
 }
 
+
+
 /*
 =====================
 BACK BUTTON
@@ -288,33 +290,23 @@ BACK BUTTON
 function initBackButton(){
 
     const btnBack =
-        document.getElementById(
-            "btnBack"
-        );
+        document.getElementById("btnBack");
 
     const modal =
-        document.getElementById(
-            "backModal"
-        );
+        document.getElementById("backModal");
 
     const cancel =
-        document.getElementById(
-            "cancelBack"
-        );
+        document.getElementById("cancelBack");
 
     const confirm =
-        document.getElementById(
-            "confirmBack"
-        );
+        document.getElementById("confirmBack");
 
 
     btnBack.addEventListener(
         "click",
         () => {
 
-            modal.classList.add(
-                "show"
-            );
+            modal.classList.add("show");
 
         }
     );
@@ -324,9 +316,7 @@ function initBackButton(){
         "click",
         () => {
 
-            modal.classList.remove(
-                "show"
-            );
+            modal.classList.remove("show");
 
         }
     );
@@ -336,13 +326,9 @@ function initBackButton(){
         "click",
         (e) => {
 
-            if (
-                e.target === modal
-            ) {
+            if (e.target === modal) {
 
-                modal.classList.remove(
-                    "show"
-                );
+                modal.classList.remove("show");
 
             }
 
@@ -354,13 +340,14 @@ function initBackButton(){
         "click",
         () => {
 
-            window.location.href =
-                "article.html";
+            window.location.href="../article/";
 
         }
     );
 
 }
+
+
 
 /*
 =====================

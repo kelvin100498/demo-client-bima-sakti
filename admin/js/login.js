@@ -114,7 +114,7 @@ loginForm.addEventListener("submit",async(e)=>{
 
             }).then(()=>{
 
-                window.location.href="dashboard.html";
+                window.location.href="../../admin/page/dashboard";
 
             });
 

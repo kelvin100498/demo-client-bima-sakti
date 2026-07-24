@@ -23,7 +23,7 @@ document.addEventListener(
         if (!valid) {
 
             window.location.href =
-                "index.html";
+                "/admin";
 
             return;
 
@@ -196,7 +196,7 @@ async function loadArticle(id) {
         ) {
 
             window.location.href =
-                "article.html";
+                "../article/";
 
             return;
 
@@ -285,7 +285,7 @@ async function loadArticle(id) {
         */
 
         window.location.href =
-            "article.html";
+            "../article/";
 
     }
 
@@ -671,7 +671,7 @@ async function updateArticle(
                 () => {
 
                     window.location.href =
-                        "article.html";
+                        "../article/";
 
                 },
                 1000
@@ -781,7 +781,7 @@ function initBackButton(){
         () => {
 
             window.location.href =
-                "article.html";
+                "../article/";
 
         }
     );

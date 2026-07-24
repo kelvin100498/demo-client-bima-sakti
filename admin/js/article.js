@@ -20,7 +20,7 @@ document.addEventListener(
 
         if (!valid) {
 
-            window.location.href = "index.html";
+            window.location.href = "/admin";
 
             return;
 
@@ -617,7 +617,7 @@ function initEdit() {
                 button.dataset.id;
 
             window.location.href =
-                `article-edit.html?id=${id}`;
+                 `../article-edit/?id=${id}`;
 
         });
 

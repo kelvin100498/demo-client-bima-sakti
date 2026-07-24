@@ -64,7 +64,7 @@ const Auth = {
 
         localStorage.removeItem("cms_user");
 
-        window.location.href = "index.html";
+        window.location.href = "/admin";
 
     },
 
@@ -72,7 +72,7 @@ const Auth = {
 
         if (!this.isLogin()) {
 
-            window.location.href = "index.html";
+            window.location.href = "/admin";
 
             return false;
 
