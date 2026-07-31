@@ -203,7 +203,7 @@ OVERLAY
 
 .lawyer-name{
 
-    color:#111827;
+    color:#fff;
 
     font-size:23px;
 
@@ -217,7 +217,7 @@ OVERLAY
 
 .lawyer-position{
 
-    color:#6b7280;
+    color:rgba(255,255,255,.85);
 
     font-size:15px;
 
@@ -231,9 +231,7 @@ BODY
 
 .lawyer-body{
 
-    padding:24px;
-
-    text-align:center;
+    padding:18px 24px;
 
 }
 
@@ -311,11 +309,7 @@ FOOTER
 
     gap:18px;
 
-    margin-top:24px;
-
-    padding-top:22px;
-
-    border-top:1px solid #eef2f7;
+    padding-top:8px;
 
 }
 
@@ -452,6 +446,40 @@ LOADING
     width:70px;
 
     margin:auto;
+
+}
+
+.btn-primary{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px 20px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.25s;
+
+    box-shadow:0 6px 15px rgba(37,99,235,.25);
+
+}
+
+.btn-primary:hover{
+
+    background:#1d4ed8;
+
+    transform:translateY(-2px);
 
 }
 

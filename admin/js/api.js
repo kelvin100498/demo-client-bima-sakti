@@ -76,3 +76,62 @@ async function addVisitorApi() {
     return await response.json();
 
 }
+
+async function getLawyers(page = 1, limit = 9) {
+
+    const body = new URLSearchParams();
+
+    body.append("action", "getLawyers");
+    body.append("page", page);
+    body.append("limit", limit);
+
+    const response = await fetch(API_URL, {
+
+        method: "POST",
+
+        body: body
+
+    });
+
+    return await response.json();
+
+}
+
+async function deleteLawyer(id){
+
+    const form = new URLSearchParams();
+
+    form.append("action", "deleteLawyer");
+    form.append("id", id);
+
+    const response =
+        await fetch(API_URL,{
+
+            method:"POST",
+
+            body:form
+
+        });
+
+    return await response.json();
+
+}
+
+async function addLawyerApi(data) {
+
+    const formData = new FormData();
+
+    Object.keys(data).forEach(key => {
+        formData.append(key, data[key]);
+    });
+
+    formData.append("action", "addLawyer");
+
+    const response = await fetch(API_URL, {
+        method: "POST",
+        body: formData
+    });
+
+    return await response.json();
+
+}

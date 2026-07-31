@@ -1,10 +1,3 @@
-/*!
-* Start Bootstrap - Agency v7.0.12 (https://startbootstrap.com/theme/agency)
-* Copyright 2013-2025 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-agency/blob/master/LICENSE)
-*/
-//
-// Scripts
 
 window.addEventListener('DOMContentLoaded', async (event) => {
 
@@ -53,21 +46,81 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     // ==============================
     // FETCH BERITA
     // ==============================
-
     async function fetchBerita() {
+
         try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbzpNl-wt1Uw6w6QPmhtxoC8IHxMElqnFXLHFxVBaZ8hRPP-CnWmfgTEAyVSPOUzEmqO/exec");
-            const data = await response.json();
-
-            const beritaTerbaru = data;
-
-            // Kirim data ke HTML pakai CustomEvent
-            document.dispatchEvent(new CustomEvent("beritaLoaded", { detail: beritaTerbaru }));
-
-        } catch (error) {
-            console.error("Gagal mengambil data:", error);
+    
+            const body = new URLSearchParams();
+    
+            body.append(
+                "action",
+                "getPublishedArticles"
+            );
+    
+    
+            const response = await fetch(API_URL, {
+    
+                method: "POST",
+    
+                body: body
+    
+            });
+    
+    
+            const result =
+                await response.json();
+    
+    
+            if(result.success){
+    
+                document.dispatchEvent(
+                    new CustomEvent(
+                        "beritaLoaded",
+                        {
+                            detail: result.data
+                        }
+                    )
+                );
+    
+            } else {
+    
+                document.dispatchEvent(
+                    new CustomEvent(
+                        "beritaLoaded",
+                        {
+                            detail: []
+                        }
+                    )
+                );
+    
+            }
+    
+    
+        } catch(error) {
+    
+            console.error(
+                "Gagal mengambil data:",
+                error
+            );
+    
         }
+    
     }
+
+    // async function fetchBerita() {
+    //     try {
+    //         const response = await fetch("https://script.google.com/macros/s/AKfycbzpNl-wt1Uw6w6QPmhtxoC8IHxMElqnFXLHFxVBaZ8hRPP-CnWmfgTEAyVSPOUzEmqO/exec");
+    //         const data = await response.json();
+
+    //         const beritaTerbaru = data;
+
+    //         // Kirim data ke HTML pakai CustomEvent
+    //         document.dispatchEvent(new CustomEvent("beritaLoaded", { detail: beritaTerbaru }));
+
+    //     } catch (error) {
+    //         console.error("Gagal mengambil data:", error);
+    //     }
+    // }
 
     fetchBerita();
 });
