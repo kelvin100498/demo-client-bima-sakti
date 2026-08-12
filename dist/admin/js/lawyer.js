@@ -1,318 +1,590 @@
-document.addEventListener(
-    "DOMContentLoaded",
-    async () => {
-
-        await loadSidebar("lawyer");
-
-        const valid = await Auth.check();
-
-        if (!valid) {
-
-            window.location.href = "/admin";
-
-            return;
-
-        }
-
-        loadLawyers();
-
-        initSearch();
-
-        initLogout();
-
-    }
-);
-
-
-/*
-===================================
-GLOBAL DATA
-===================================
-*/
-
 let lawyers = [];
 
+let currentPage = 1;
 
-/*
-===================================
-LOAD LAWYER (DUMMY)
-===================================
-*/
+const LIMIT = 9;
 
-function loadLawyers() {
+let totalPage = 1;
 
-    lawyers = [
+let selectedLawyerId = null;
 
-        {
+/*******************************************************
+ * READY
+ *******************************************************/
+document.addEventListener(
+    "DOMContentLoaded",
+    initLawyerPage
+);
 
-            id: 1,
+/*******************************************************
+ * INIT
+ *******************************************************/
+async function initLawyerPage() {
+    console.log("getLawyers API called");
 
-            name: "Novel Suwa",
+    await loadLawyers(currentPage);
 
-            position: "Founder",
-
-            photo: "https://lbh-bimasakti.id/assets/img/team/1_3.jpg"
-
-        },
-
-        {
-
-            id: 2,
-
-            name: "Conie Pania Putri",
-
-            position: "Partner",
-
-            photo: "https://lbh-bimasakti.id/assets/img/team/2_1.jpg"
-
-        },
-
-        {
-
-            id: 3,
-
-            name: "Machdum Satria",
-
-            position: "Senior Lawyer",
-
-            photo: "https://lbh-bimasakti.id/assets/img/team/3.jpg"
-
-        },
-
-        {
-
-            id: 4,
-
-            name: "Siti Rahmawati",
-
-            position: "Associate",
-
-            photo: "https://lbh-bimasakti.id/assets/img/team/6.jpg"
-
-        },
-
-        {
-
-            id: 5,
-
-            name: "Agus Setiawan",
-
-            position: "Partner",
-
-            photo: "https://lbh-bimasakti.id/assets/img/team/4.jpg"
-
-        },
-
-        {
-
-            id: 6,
-
-            name: "Dian Kusuma",
-
-            position: "Junior Lawyer",
-
-            photo: "https://lbh-bimasakti.id/assets/img/team/5.jpg"
-
-        }
-
-    ];
-
-    loadStatistic();
-
-    renderLawyer(lawyers);
+    setupSearch();
 
 }
 
+/*******************************************************
+ * LOAD LAWYERS
+ *******************************************************/
+async function loadLawyers(page = 1) {
 
-/*
-===================================
-STATISTIC
-===================================
-*/
+    currentPage = page;
 
-function loadStatistic() {
-
-    document.getElementById("totalLawyer").textContent =
-        lawyers.length;
-
-}
-
-
-/*
-===================================
-RENDER
-===================================
-*/
-
-function renderLawyer(data) {
-
-    const container =
+    const lawyerGrid =
         document.getElementById("lawyerGrid");
 
-    const empty =
+    const emptyLawyer =
         document.getElementById("emptyLawyer");
 
     const emptySearch =
         document.getElementById("emptySearch");
+    
+    const totalLawyer =
+        document.getElementById("totalLawyer");
 
-    container.innerHTML = "";
+    lawyerGrid.innerHTML = `
+
+        <div class="loading-grid">
+
+            <lottie-player
+                src="../../../admin/assets/loading.json"
+                background="transparent"
+                speed="1"
+                class="mini-spinner-lottie"
+                loop
+                autoplay>
+            </lottie-player>
+
+            <p>
+                Memuat data advokat...
+            </p>
+
+        </div>
+
+    `;
+
+    totalLawyer.innerHTML = `
+        <lottie-player
+            src="../../../admin/assets/loading.json"
+            background="transparent"
+            speed="1"
+            class="mini-spinner-lottie"
+            loop
+            autoplay>
+        </lottie-player>
+    `;
+
+
+    const result =
+        await getLawyers(
+            page,
+            LIMIT
+        );
+
+    if (!result.success) {
+
+        lawyerGrid.innerHTML = "";
+
+        showToast(
+            "Gagal memuat data advokat.",
+            false
+        );
+
+        return;
+
+    }
+
+    lawyers = result.data;
+
+    totalPage = result.totalPage;
+
+    document.getElementById(
+        "totalLawyer"
+    ).innerHTML = result.total;
 
     if (lawyers.length === 0) {
 
-        empty.style.display = "block";
+        lawyerGrid.style.display = "none";
 
         emptySearch.style.display = "none";
 
-        return;
-
-    }
-
-    empty.style.display = "none";
-
-    if (data.length === 0) {
-
-        emptySearch.style.display = "block";
+        emptyLawyer.style.display = "block";
 
         return;
 
     }
+
+    lawyerGrid.style.display = "grid";
+
+    emptyLawyer.style.display = "none";
 
     emptySearch.style.display = "none";
 
-    data.forEach(item => {
+    renderLawyers(lawyers);
 
-        container.innerHTML += `
+    renderPagination();
 
-<div class="lawyer-card">
+}
 
-    <img
-        src="${item.photo}"
-        class="lawyer-image">
+/*******************************************************
+ * RENDER LAWYERS
+ *******************************************************/
+function renderLawyers(data) {
 
-    <div class="lawyer-body">
+    const lawyerGrid =
+        document.getElementById("lawyerGrid");
 
-        <div class="lawyer-name">
+    let html = "";
 
-            ${item.name}
+    data.forEach(function(item) {
+
+        html += `
+
+        <div class="lawyer-card">
+
+            <div class="lawyer-photo">
+
+                <img
+                class="lawyer-image"
+                src="data:image/jpeg;base64,${item.photo}"
+                alt="${item.name}">
+
+                <div class="lawyer-overlay">
+
+                    <div class="lawyer-name">
+
+                        ${item.name}
+
+                    </div>
+
+                    <div class="lawyer-position">
+
+                        ${item.position}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="lawyer-body">
+
+                <div class="lawyer-footer">
+
+                    <button
+                        class="btn-action btn-edit"
+                        onclick="editLawyer('${item.id}')">
+
+                        <i class="fa-solid fa-pen"></i>
+
+                    </button>
+
+                    <button
+                        class="btn-action btn-delete"
+                        onclick="openDeleteModal('${item.id}')">
+
+                        <i class="fa-solid fa-trash"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="lawyer-position">
-
-            ${item.position}
-
-        </div>
-
-        <div class="lawyer-footer">
-
-            <button
-                class="btn-action btn-edit"
-                data-id="${item.id}">
-
-                <i class="fa-solid fa-pen"></i>
-
-            </button>
-
-            <button
-                class="btn-action btn-delete"
-                data-id="${item.id}">
-
-                <i class="fa-solid fa-trash"></i>
-
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-`;
+        `;
 
     });
 
+    lawyerGrid.innerHTML = html;
+
 }
 
+/*******************************************************
+ * SEARCH
+ *******************************************************/
+function setupSearch() {
 
-/*
-===================================
-SEARCH
-===================================
-*/
+    const input =
+        document.getElementById(
+            "searchLawyer"
+        );
 
-function initSearch() {
-
-    document
-        .getElementById("searchLawyer")
-        .addEventListener("keyup", function () {
+    input.addEventListener(
+        "keyup",
+        function () {
 
             const keyword =
-                this.value.toLowerCase();
+                this.value
+                    .trim()
+                    .toLowerCase();
 
-            const result =
-                lawyers.filter(item =>
-
-                    item.name
-                        .toLowerCase()
-                        .includes(keyword)
-
+            const emptySearch =
+                document.getElementById(
+                    "emptySearch"
                 );
 
-            renderLawyer(result);
+            const lawyerGrid =
+                document.getElementById(
+                    "lawyerGrid"
+                );
 
-        });
+            if (keyword === "") {
+
+                emptySearch.style.display =
+                    "none";
+
+                lawyerGrid.style.display =
+                    "grid";
+
+                renderLawyers(lawyers);
+
+                return;
+
+            }
+
+            const result =
+                lawyers.filter(function(item){
+
+                    return (
+                        item.name
+                            .toLowerCase()
+                            .includes(keyword) ||
+
+                        item.position
+                            .toLowerCase()
+                            .includes(keyword)
+                    );
+
+                });
+
+            if (result.length === 0) {
+
+                lawyerGrid.style.display =
+                    "none";
+
+                emptySearch.style.display =
+                    "block";
+
+                return;
+
+            }
+
+            emptySearch.style.display =
+                "none";
+
+            lawyerGrid.style.display =
+                "grid";
+
+            renderLawyers(result);
+
+        }
+    );
 
 }
 
+/*******************************************************
+ * RENDER PAGINATION
+ *******************************************************/
+function renderPagination() {
 
-/*
-===================================
-LOGOUT
-===================================
-*/
+    let pagination =
+        document.getElementById(
+            "pagination"
+        );
 
-function initLogout() {
+    if (!pagination) {
 
-    const logout =
-        document.getElementById("logout");
+        pagination =
+            document.createElement("div");
 
-    const modal =
-        document.getElementById("logoutModal");
+        pagination.id =
+            "pagination";
 
-    const cancel =
-        document.getElementById("cancelLogout");
+        pagination.className =
+            "pagination";
 
-    const confirm =
-        document.getElementById("confirmLogout");
+        document
+            .querySelector(".lawyer-panel")
+            .appendChild(pagination);
 
-    logout.onclick = (e) => {
+    }
 
-        e.preventDefault();
+    let html = "";
 
-        modal.classList.add("show");
+    html += `
 
-    };
+        <button
 
-    cancel.onclick = () => {
+            class="page-btn"
 
-        modal.classList.remove("show");
+            ${currentPage === 1 ? "disabled" : ""}
 
-    };
+            onclick="changePage(${currentPage - 1})"
 
-    modal.onclick = (e) => {
+        >
 
-        if (e.target === modal) {
+            <i class="fa-solid fa-chevron-left"></i>
 
-            modal.classList.remove("show");
+        </button>
+
+    `;
+
+    for (
+        let i = 1;
+        i <= totalPage;
+        i++
+    ) {
+
+        html += `
+
+            <button
+
+                class="page-btn ${i === currentPage ? "active" : ""}"
+
+                onclick="changePage(${i})"
+
+            >
+
+                ${i}
+
+            </button>
+
+        `;
+
+    }
+
+    html += `
+
+        <button
+
+            class="page-btn"
+
+            ${currentPage === totalPage ? "disabled" : ""}
+
+            onclick="changePage(${currentPage + 1})"
+
+        >
+
+            <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+    `;
+
+    pagination.innerHTML = html;
+
+}
+
+/*******************************************************
+ * CHANGE PAGE
+ *******************************************************/
+function changePage(page) {
+
+    if (
+        page < 1 ||
+        page > totalPage
+    ) {
+        return;
+    }
+
+    loadLawyers(page);
+
+}
+
+/*******************************************************
+ * REFRESH
+ *******************************************************/
+function refreshLawyers() {
+
+    document.getElementById(
+        "searchLawyer"
+    ).value = "";
+
+    loadLawyers(currentPage);
+
+}
+
+/*******************************************************
+ * DELETE MODAL
+ *******************************************************/
+function openDeleteModal(id) {
+
+    selectedLawyerId = id;
+
+    document
+        .getElementById("deleteModal")
+        .style.display = "flex";
+
+}
+
+function closeDeleteModal() {
+
+    selectedLawyerId = null;
+
+    document
+        .getElementById("deleteModal")
+        .style.display = "none";
+
+}
+
+document
+    .getElementById("cancelDelete")
+    .addEventListener(
+        "click",
+        closeDeleteModal
+    );
+
+document
+    .getElementById("deleteModal")
+    .addEventListener(
+        "click",
+        function(e){
+
+            if(
+                e.target.id ===
+                "deleteModal"
+            ){
+
+                closeDeleteModal();
+
+            }
 
         }
+    );
 
-    };
+/*******************************************************
+ * CONFIRM DELETE
+ *******************************************************/
+document
+    .getElementById("confirmDelete")
+    .addEventListener(
+        "click",
+        confirmDelete
+    );
 
-    confirm.onclick = async () => {
+    async function confirmDelete() {
 
-        await Auth.logout();
+        if (!selectedLawyerId) {
+            return;
+        }
+    
+        const btnConfirm =
+            document.getElementById("confirmDelete");
+    
+        const btnCancel =
+            document.getElementById("cancelDelete");
+    
+        // Disable tombol agar tidak bisa diklik berkali-kali
+        btnConfirm.disabled = true;
+        btnCancel.disabled = true;
+    
+        btnConfirm.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> Menghapus...';
+    
+        showLoading();
+    
+        try {
+    
+            console.log("Calling API...");
+    
+            const result =
+                await deleteLawyer(selectedLawyerId);
+    
+            if (result.success) {
+    
+                showToast(
+                    result.message ||
+                    "Advokat berhasil dihapus."
+                );
+    
+                closeDeleteModal();
+    
+                await loadLawyers(currentPage);
+    
+            } else {
+    
+                showToast(
+                    result.message ||
+                    "Gagal menghapus advokat.",
+                    false
+                );
+    
+            }
+    
+        } catch (err) {
+    
+            console.error(err);
+    
+            showToast(
+                "Terjadi kesalahan.",
+                false
+            );
+    
+        } finally {
+    
+            hideLoading();
+    
+            btnConfirm.disabled = false;
+            btnCancel.disabled = false;
+    
+            btnConfirm.innerHTML = "Hapus";
+    
+        }
+    
+    }
 
-    };
+/*******************************************************
+ * LOADING
+ *******************************************************/
+function showLoading() {
+
+    document.getElementById(
+        "loadingOverlay"
+    ).style.display = "flex";
+
+}
+
+function hideLoading() {
+
+    document.getElementById(
+        "loadingOverlay"
+    ).style.display = "none";
+
+}
+
+/*******************************************************
+ * TOAST
+ *******************************************************/
+function showToast(
+    message,
+    success = true
+) {
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+    toast.innerHTML = message;
+
+    toast.className =
+        success
+        ? "toast success show"
+        : "toast error show";
+
+    setTimeout(function(){
+
+        toast.classList.remove(
+            "show"
+        );
+
+    },3000);
 
 }

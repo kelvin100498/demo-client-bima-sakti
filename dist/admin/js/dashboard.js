@@ -224,52 +224,92 @@ document.addEventListener(
     
             /*
             =====================
-            TOTAL ARTICLE
+            RUN ALL REQUEST PARALLEL
             =====================
             */
     
-            const body = new URLSearchParams();
+            const bodyArticle = new URLSearchParams();
+            bodyArticle.append(
+                "action",
+                "totalArticle"
+            );
     
-            body.append("action", "getArticles");
     
-            const response = await fetch(API_URL,{
-                method:"POST",
-                body:body
-            });
+            const bodyLawyer = new URLSearchParams();
+            bodyLawyer.append(
+                "action",
+                "totalLawyer"
+            );
     
-            const result = await response.json();
+    
+            const [
+                responseArticle,
+                responseLawyer,
+                visitor
+            ] = await Promise.all([
+    
+                fetch(API_URL,{
+                    method:"POST",
+                    body:bodyArticle
+                }),
+    
+                fetch(API_URL,{
+                    method:"POST",
+                    body:bodyLawyer
+                }),
+    
+                totalVisitorApi()
+    
+            ]);
+    
+    
+            /*
+            =====================
+            PARSE RESPONSE
+            =====================
+            */
+    
+            const [
+                resultArticle,
+                resultLawyer
+            ] = await Promise.all([
+    
+                responseArticle.json(),
+    
+                responseLawyer.json()
+    
+            ]);
+    
+    
+            /*
+            =====================
+            SET STATISTIC
+            =====================
+            */
     
             document.getElementById("totalArticle").innerHTML =
-                result.success ? result.total : 0;
+                resultArticle.success
+                ? resultArticle.total
+                : 0;
     
-            /*
-            =====================
-            TOTAL LAWYER
-            =====================
-            */
-    
-            const statistic = {
-                lawyer:8
-            };
     
             document.getElementById("totalLawyer").innerHTML =
-                statistic.lawyer;
+                resultLawyer.success
+                ? resultLawyer.total
+                : 0;
     
-            /*
-            =====================
-            TOTAL VISITOR
-            =====================
-            */
-    
-            const visitor = await totalVisitorApi();
     
             document.getElementById("totalVisitor").innerHTML =
-                visitor.total;
+                visitor.total || 0;
+    
     
         }
         catch(error){
     
-            console.error("Dashboard error:", error);
+            console.error(
+                "Dashboard error:",
+                error
+            );
     
         }
     
