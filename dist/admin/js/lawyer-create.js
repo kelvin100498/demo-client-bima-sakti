@@ -558,3 +558,32 @@ function showToast(message, type = "success") {
     }, 3000);
 
 }
+
+btnBack.addEventListener(
+    "click",
+    () => {
+
+        backModal.classList.add("show");
+
+    }
+);
+
+
+cancelBack.addEventListener(
+    "click",
+    () => {
+
+        backModal.classList.remove("show");
+
+    }
+);
+
+
+confirmBack.addEventListener(
+    "click",
+    () => {
+
+        window.location.href = "../lawyer/index.html";
+
+    }
+);
